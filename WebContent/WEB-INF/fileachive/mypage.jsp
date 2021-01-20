@@ -3,32 +3,30 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page import="Bean.post" %>
+<!-- マイページ　html -->
 <!DOCTYPE html>
-<html lang="ja" class="no-js">
-    <head>
-    <!-- 確認 -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timeline.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <title>Registration</title>
-	</head>
+<html lang="ja">
+<head>
+<!-- 確認 -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<!-- font awesome CSS -->
+<script src="https://kit.fontawesome.com/86a6bb02b6.js"
+	crossorigin="anonymous"></script>
+<!-- end -->
+
+<title><%=request.getAttribute("name")%>のページ</title>
 
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>災害情報</title>
-		<meta name="description" content="Blueprint: Vertical Timeline" />
-		<meta name="keywords" content="timeline, vertical, layout, style, component, web development, template, responsive" />
-		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/timeline.css">
-		<script src="/WebContent/js/timeline.js"></script>
-
-
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+<!-- 投稿ボタンを押下した際に出てくる投稿モーダル -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content" style="width: 750px;">
@@ -270,15 +268,18 @@
 		</div>
 	</div>
 </div>
-	</head>
-	<body>
+<!--  -->
 
-
+</head>
+<!-- ヘッド終了　以下body -->
+<body>
+	<!-- hedear開始 -->
 	<section class="header">
         <div class="header_items">
             <!-- ロゴ -->
             <div id="h_item1">
                 <div id="logo">
+                    <img src="https://getbootstrap.jp/docs/4.5/assets/brand/bootstrap-solid.svg" alt="">
                 </div>
             </div>
             <!-- 画面遷移 -->
@@ -312,38 +313,243 @@
             </div>
         </div>
     </section>
+	<!--
+    header終了・ マイページ（ホーム）開始
+  -->
+	<div class="home-page">
+		<img src="{pageContext.request.contextPath}/app-image/気象庁.jpg" alt="ユーザのトップ画像" class="rounded-circle"
+			style="height: 100px; width: 100px;">
 
+		<!-- プロフィール -->
+		<div class="profile">
+			<div class="username">
+				<h1>ユーザ名を入力</h1>
+			</div>
+			<div class="bg-white rounded">
+				<p class="text-justify">こんにちは！</p>
+			</div>
+		</div>
+		<!-- end -->
 
-  <!-- ▼▼twitter風ここから -->
-  <div class="twitter__container">
-    <!-- ▼タイムラインエリア scrollを外すと高さ固定解除 -->
-    <div class="twitter__contents scroll">
-    <!-- ここに吹き出しやスタンプのタグを追加していく -->
-    <!-- 記事エリア -->
-    <%
+		<!-- タブ -->
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item"><a class="nav-link active blue" id="home-tab"
+				data-toggle="tab" href="#home" role="tab" aria-controls="home"
+				aria-selected="true">過去投稿</a></li>
+			<li class="nav-item"><a class="nav-link blue" id="profile-tab"
+				data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+				aria-selected="false">画像一覧</a></li>
+			<li class="nav-item"><a class="nav-link blue" id="contact-tab"
+				data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+				aria-selected="false">アカウント管理</a></li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="home" role="tabpanel"
+				aria-labelledby="home-tab">
+
+				<table class="table">
+					<tbody style="background-color:#f0f8ff;">
+				<%
 				ArrayList<post> list = (ArrayList<post>)request.getAttribute("list");
 				for(int i = 0 ; i < list.size() ; i++){
 					post post = list.get(i);
 				%>
-      <div class="twitter__block">
-        <figure>
-          <img src="icon.png" />
-        </figure>
-        <div class="twitter__block-text">
-        <div hidden><%=post.getId() %>></div>
-          <div class="name"><%=post.getAccount_name() %><span class="name_reply"><%=post. getAccount_Id() %></span></div>
-          <div class="date"><%=post.getCreate_At() %></div>
-          <div class="text">
-            <%=post.getContents() %><br><%=post.getImg()%>
-          </div>
-          <div hidden><%=post.getTags_Id()%><%=post.getAddress()%></div>
-        </div>
-      </div>
-<%} %>
-    </div>
-    <!--　▲タイムラインエリア ここまで -->
-  </div>
-  <!--　▲twitter風ここまで -->
+						<tr>
+							<th scope="row" style="width: 100px;">1</th>
+							<td><img src="../image/沖縄海.jpg" alt=""
+								class="rounded-circle"
+								style="margin-left: 0px; height: 30px; width: 30px;"><%=post.getId() %>
+								<p class="text-justify"><%=post.getContents() %></p>
+								<p id="hidden"><%=post.getAddress() %><%=post.getImg()%><%=post.getTags_Id()%><%=post.getCreate_At() %></p>
+								 <!--twitter--> <a class="btn-social-square btn-social-square--twitter"> <i
+									class="fa fa-twitter"></i>
+							</a> <!--facebook--> <a
+								class="btn-social-square btn-social-square--facebook"> <i
+									class="fa fa-facebook"></i>
+							</a> <!--はてぶ--> <a
+								class="btn-social-square btn-social-square--hatebu"> B! </a> <!--pocket-->
+								<a class="btn-social-square btn-social-square--pocket"> <i
+									class="fa fa-get-pocket"></i>
+							</a> <!--feedly--> <a
+								class="btn-social-square btn-social-square--feedly"> <i
+									class="fa fa-rss"></i>
+							</a></td>
 
-	</body>
+
+						</tr>
+						<%
+						}
+						%>
+					</tbody>
+				</table>
+			</div>
+			<div class="tab-pane fade" id="profile" role="tabpanel"
+				aria-labelledby="profile-tab">
+				<div class="insta" style="background-color:#f0f8ff;">
+					<div>
+						<a> <img src="../image/空.jpg" class="img-circle"> <span
+							class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-times fa-stack-1x fa-inverse"></i>
+						</span>
+						</a>
+					</div>
+
+					<div>
+						<a> <img src="../image/空.jpg" class="img-circle"> <span
+							class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-times fa-stack-1x fa-inverse"></i>
+						</span>
+						</a>
+					</div>
+
+					<div>
+						<a> <img src="../image/空.jpg" class="img-circle"> <span
+							class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-times fa-stack-1x fa-inverse"></i>
+						</span>
+						</a>
+					</div>
+
+					<div>
+						<a> <img src="../image/空.jpg" class="img-circle"> <span
+							class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-times fa-stack-1x fa-inverse"></i>
+						</span>
+						</a>
+					</div>
+
+					<div>
+						<a> <img src="../image/空.jpg" class="img-circle"> <span
+							class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-times fa-stack-1x fa-inverse"></i>
+						</span>
+						</a>
+					</div>
+
+					<div>
+						<a> <img src="../image/空.jpg" class="img-circle"> <span
+							class="fa-stack fa-lg"> <i
+								class="fa fa-circle fa-stack-2x"></i> <i
+								class="fa fa-times fa-stack-1x fa-inverse"></i>
+						</span>
+						</a>
+					</div>
+
+				</div>
+			</div>
+			<div class="tab-pane fade" id="contact" role="tabpanel"
+				aria-labelledby="contact-tab">
+				<!--ここにその他-->
+<!-- アカウント情報変更タブ -->
+<form class="needs-validation" novalidate action="/sotuken-project/UpdateServlet" method="get" style="background-color:#f0f8ff;">
+<div class="form-row">
+<div class="col-md-5 mb-3">
+<label for="validationCustom01">ユーザID</label>
+<input type="text" class="form-control" id="validationCustom01" value=<%=request.getAttribute("id")%> name="userid" required>
+<div class="valid-feedback">
+
+</div>
+</div>
+<div class="col-md-5 mb-3">
+<label for="validationCustom02">名前</label>
+<input type="text" class="form-control" id="validationCustom02" value=<%=request.getAttribute("name")%> name="lastname" required>
+<div class="valid-feedback">
+
+</div>
+</div>
+</div>
+<div class="form-row">
+<div class="col-md-5 mb-3">
+<label for="validationCustom03">電話番号</label>
+<input type="text" class="form-control" id="validationCustom03" value=<%=request.getAttribute("tell")%> name="tell" required>
+<div class="invalid-feedback">
+</div>
+</div>
+<div class="col-md-5 mb-3">
+<label for="validationCustom06">メール</label>
+<input type="text" class="form-control" id="validationCustom06" value=<%=request.getAttribute("mail")%> aria-describedby="inputGroupPrepend"  name="userId" required>
+<div class="invalid-feedback">
+</div>
+</div>
+</div>
+<div class="form-row">
+<div class="col-md-5 mb-3">
+<label for="validationCustom04">現在のパスワード</label>
+<input type="password" class="form-control" id="validationCustom04" placeholder="パスワード" name="password" required>
+<div class="invalid-feedback">
+</div>
+</div>
+<div class="col-md-5 mb-3">
+<label for="validationCustom05">新しいパスワード</label>
+<input type="password" class="form-control" id="validationCustom05" placeholder="パスワードの再入力をお願いします" name="password2" required>
+<div class="invalid-feedback">
+</div>
+</div>
+</div>
+<div class="form-group">
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+<label class="form-check-label" for="invalidCheck">
+同意
+</label>
+<div class="invalid-feedback">
+同意が無いと変更できません
+</div>
+</div>
+</div>
+<button class="btn btn-primary" type="submit">アカウント情報変更</button>
+</form>
+</div>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+'use strict';
+window.addEventListener('load', function() {
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+var forms = document.getElementsByClassName('needs-validation');
+// Loop over them and prevent submission
+var validation = Array.prototype.filter.call(forms, function(form) {
+form.addEventListener('submit', function(event) {
+if (form.checkValidity() === false) {
+	event.preventDefault();
+	event.stopPropagation();
+}
+form.classList.add('was-validated');
+}, false);
+});
+}, false);
+})();
+</script>
+				<!-- ここまで -->
+			</div>
+		</div>
+	</div>
+	<!-- マイページ終わり -->
+	<!--
+    Optional JavaScript
+  -->
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+	<!--ここまで-->
+
+</body>
+<!-- body終了 -->
+
 </html>
