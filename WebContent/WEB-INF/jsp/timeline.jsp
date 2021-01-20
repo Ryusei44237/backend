@@ -1,8 +1,8 @@
 <%@page import="Bean.account"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page import="Bean.post" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ja" class="no-js">
     <head>
@@ -12,8 +12,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timeline.css">
         <title>Registration</title>
+	</head>
 
 
+	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -264,19 +266,19 @@
 					</div>
 				</div>
 			</div>
+			<!--  -->
 		</div>
 	</div>
 </div>
-</head>
+	</head>
+	<body>
 
 
-<body style="background:#f5f5f5;">
 	<section class="header">
         <div class="header_items">
             <!-- ロゴ -->
             <div id="h_item1">
                 <div id="logo">
-                    <img src="https://getbootstrap.jp/docs/4.5/assets/brand/bootstrap-solid.svg" alt="">
                 </div>
             </div>
             <!-- 画面遷移 -->
@@ -303,6 +305,10 @@
                 </div>
                  <!-- 投稿ボタン -->
                  <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" id="post_button">投稿</button>
+                <!-- 設定ボタン -->
+                <div id="setting">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"data-target=".bd-example-modal-sm"><i class="fas fa-cog"></i></button>
+                </div>
             </div>
         </div>
     </section>
@@ -314,96 +320,26 @@
     <div class="twitter__contents scroll">
     <!-- ここに吹き出しやスタンプのタグを追加していく -->
     <!-- 記事エリア -->
+    <%
+				ArrayList<post> list = (ArrayList<post>)request.getAttribute("list");
+				for(int i = 0 ; i < list.size() ; i++){
+					post post = list.get(i);
+				%>
       <div class="twitter__block">
         <figure>
           <img src="icon.png" />
         </figure>
         <div class="twitter__block-text">
-          <div class="name">中村<span class="name_reply">@usa_tan</span></div>
-          <div class="date">10分前</div>
+        <div hidden><%=post.getId() %>></div>
+          <div class="name"><%=post.getAccount_name() %><span class="name_reply"><%=post. getAccount_Id() %></span></div>
+          <div class="date"><%=post.getCreate_At() %></div>
           <div class="text">
-            今日も終電だよ～<br>
+            <%=post.getContents() %><br><%=post.getImg()%>
           </div>
+          <div hidden><%=post.getTags_Id()%><%=post.getAddress()%></div>
         </div>
       </div>
-
-      <!-- 記事エリア -->
-      <div class="twitter__block">
-        <figure>
-          <img src="icon.png" />
-        </figure>
-        <div class="twitter__block-text">
-          <div class="name">あ<span class="name_reply">@abcde</span></div>
-          <div class="date">1時間前</div>
-          <div class="text">
-            残業でお腹空いたから朝までやってるお店でラーメン食べることにした(^o^)神の食べ物すぎる・・うまぁ
-            <div class="in-pict">
-              <img src="sample.jpg">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 記事エリア -->
-      <div class="twitter__block">
-        <figure>
-          <img src="icon.png" />
-        </figure>
-        <div class="twitter__block-text">
-          <div class="name">い<span class="name_reply">@usa_tan</span></div>
-          <div class="date">2018/06/24 5:34</div>
-          <div class="text">
-            睡眠２時間で出社なんだけど…
-            <a href="https://nakox.jp/">https://nakox.jp/</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="twitter__block">
-        <figure>
-          <img src="icon.png" />
-        </figure>
-        <div class="twitter__block-text">
-          <div class="name">大沼<span class="name_reply">@usa_tan</span></div>
-          <div class="date">10分前</div>
-          <div class="text">
-            今日も終電だよ～<br>
-          </div>
-        </div>
-      </div>
-
-      <!-- 記事エリア -->
-      <div class="twitter__block">
-        <figure>
-          <img src="icon.png" />
-        </figure>
-        <div class="twitter__block-text">
-          <div class="name">ヨロズツバサ<span class="name_reply">@abcde</span></div>
-          <div class="date">1時間前</div>
-          <div class="text">
-            残業でお腹空いたから朝までやってるお店でラーメン食べることにした(^o^)神の食べ物すぎる・・うまぁ
-            <div class="in-pict">
-              <img src="sample.jpg">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 記事エリア -->
-      <div class="twitter__block">
-        <figure>
-          <img src="icon.png" />
-        </figure>
-        <div class="twitter__block-text">
-          <div class="name">萬<span class="name_reply">@usa_tan</span></div>
-          <div class="date">2018/06/24 5:34</div>
-          <div class="text">
-            睡眠２時間で出社なんだけど…
-            <a href="https://nakox.jp/">https://nakox.jp/</a>
-          </div>
-        </div>
-      </div>
-
+<%} %>
     </div>
     <!--　▲タイムラインエリア ここまで -->
   </div>

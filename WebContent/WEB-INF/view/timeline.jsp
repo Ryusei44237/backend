@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page import="Bean.post" %>
+<%@page import="Bean.post" %>
 <!DOCTYPE html>
 <html lang="ja" class="no-js">
     <head>
@@ -12,10 +12,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timeline.css">
         <title>Registration</title>
-	</head>
 
 
-	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -266,19 +264,19 @@
 					</div>
 				</div>
 			</div>
-			<!--  -->
 		</div>
 	</div>
 </div>
-	</head>
-	<body>
+</head>
 
 
+<body>
 	<section class="header">
         <div class="header_items">
             <!-- ロゴ -->
             <div id="h_item1">
                 <div id="logo">
+                    <img src="https://getbootstrap.jp/docs/4.5/assets/brand/bootstrap-solid.svg" alt="">
                 </div>
             </div>
             <!-- 画面遷移 -->
@@ -305,38 +303,34 @@
                 </div>
                  <!-- 投稿ボタン -->
                  <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" id="post_button">投稿</button>
-                <!-- 設定ボタン -->
-                <div id="setting">
-                    <button type="button" class="btn btn-primary" data-toggle="modal"data-target=".bd-example-modal-sm"><i class="fas fa-cog"></i></button>
-                </div>
             </div>
         </div>
     </section>
 
 
-  <!-- ▼▼twitter風ここから -->
+ <!-- ▼▼twitter風ここから -->
   <div class="twitter__container">
     <!-- ▼タイムラインエリア scrollを外すと高さ固定解除 -->
     <div class="twitter__contents scroll">
     <!-- ここに吹き出しやスタンプのタグを追加していく -->
-    <!-- 記事エリア -->
     <%
 				ArrayList<post> list = (ArrayList<post>)request.getAttribute("list");
 				for(int i = 0 ; i < list.size() ; i++){
 					post post = list.get(i);
 				%>
+    <!-- 記事エリア -->
       <div class="twitter__block">
         <figure>
           <img src="icon.png" />
         </figure>
         <div class="twitter__block-text">
         <div hidden><%=post.getId() %>></div>
-          <div class="name"><%=post.getAccount_name() %><span class="name_reply"><%=post. getAccount_Id() %></span></div>
+          <div class="name"><%=post.getAccount_name() %><span class="name_reply">@<%=post.getId() %></span></div>
           <div class="date"><%=post.getCreate_At() %></div>
           <div class="text">
             <%=post.getContents() %><br><%=post.getImg()%>
           </div>
-          <div hidden><%=post.getTags_Id()%><%=post.getAddress()%></div>
+           <div hidden><%=post.getTags_Id()%><%=post.getAddress()%></div>
         </div>
       </div>
 <%} %>
