@@ -48,7 +48,6 @@ public class PostServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.setCharacterEncoding("UTF8");
 //    	投稿情報取得機能
 		String PostContents = request.getParameter("PostContents");
 		String account_name = request.getParameter("accountname");
