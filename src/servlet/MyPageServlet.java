@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import Bean.account;
 import Bean.post;
 import dao.AccountDao;
+import dao.FollowDao;
 import dao.PostDao;
 
 /**
@@ -29,6 +30,8 @@ public static ArrayList<post> imagearray = new ArrayList<post>();
         super();
 
     }
+
+ public static FollowDao a = new FollowDao();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -82,5 +85,12 @@ public static ArrayList<post> imagearray = new ArrayList<post>();
 		imagearray = PostDao.image(id);
 		return imagearray;
 	}
-
+	public static int FollowCount(int userId){
+		int followcount = a.getFollowCount(Integer.parseInt(id));
+		return followcount;
+	}
+	public static int FollowerCount(int userId){
+		int followercount = a.getFollowerCount(Integer.parseInt(id));
+		return followercount;
+	}
 }
