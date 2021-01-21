@@ -329,8 +329,8 @@
 				<p class="text-justify">こんにちは！</p>
 			</div>
 			<div>
-				follor
-				follwer
+				follor<%= request.getAttribute("follow")%>
+				follwer<%= request.getAttribute("follower")%>
 			</div>
 		</div>
 		<!-- end -->
