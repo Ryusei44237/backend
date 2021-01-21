@@ -13,7 +13,10 @@ public class account {
 	private String count;
 	private String userimg;
 
-	public account(){
+	public account(String followUserId, String followUserName){
+
+		this.id = followUserId;
+		this.name = followUserName;
 
 	}
 //画像なし全件挿入
