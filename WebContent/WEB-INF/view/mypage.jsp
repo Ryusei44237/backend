@@ -329,17 +329,13 @@
 				<p class="text-justify">こんにちは！</p>
 			</div>
 			<div>
-				follor<%= request.getAttribute("follow")%>
-				follwer<%= request.getAttribute("follower")%>
+				follor<%= request.getAttribute("followcount")%>
+				follwer<%= request.getAttribute("followercount")%>
 			</div>
 		</div>
 		<!-- end -->
 		<div>
-			<form method="POST" enctype="multipart/form-data" action="/sotuken/upload">
-<input type="text" name="id">
-<input type="file" name="file"/><br />
-<input type="submit" value="アップロード" />
-</form>
+
 		</div>
 		<!-- タブ -->
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
