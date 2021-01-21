@@ -19,7 +19,7 @@ public class FollowDao {
 	//ユーザ
 	private static final String user = "root";
 	//パスワード
-	private static final String pw = "Sql39sia";
+	private static final String pw = "44237";
 
 
 	public void Follow(int account_Id, int follow_Id ) {
@@ -158,7 +158,7 @@ public class FollowDao {
     		//⑤SQL文の元を作成する
     		//?をプレースホルダと言います。
     		//後の手順で?に値を設定します。
-    		String sql = "SELECT COUNT (*) AS FOLLOWERCOUNT FROM follow WHERE follow_Id = ?";
+    		String sql = "SELECT COUNT(*) AS FOLLOWERCOUNT FROM follows WHERE follow = ?";
 
     		//⑥SQLを実行するための準備(構文解析)
     		pstmt = con.prepareStatement(sql);
