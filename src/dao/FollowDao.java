@@ -112,7 +112,7 @@ public class FollowDao {
 			//⑤SQL文の元を作成する
 			//?をプレースホルダと言います。
 			//後の手順で?に値を設定します。
-			String sql = "SELECT COUNT (*) AS FOLLOWCOUNT FROM follows WHERE account_Id = ?";
+			String sql = "SELECT COUNT(*) AS FOLLOWCOUNT FROM follows WHERE account_Id = ?";
 
 			//⑥SQLを実行するための準備(構文解析)
 			pstmt = con.prepareStatement(sql);
