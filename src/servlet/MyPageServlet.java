@@ -51,7 +51,7 @@ public static ArrayList<post> imagearray = new ArrayList<post>();
 		path ="/sotuken/user-img/"+path;
 		request.setAttribute("userimg",path);
 
-//		画像取得
+//		全画像取得
 		request.setAttribute("image",imagearray);
 		if (true) {
 			/*ここにmypage.jspへの遷移コードを書く｛mypage.jsp｝*/
